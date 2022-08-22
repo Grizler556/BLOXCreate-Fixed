@@ -23,6 +23,11 @@
 <li><a href="/Market" style="font-size:16px;">Catalog</a></li>
 <li><a href="/Groups" style="font-size:16px;">Groups</a></li>
 <li><a href="/Forum" style="font-size:16px;">Forum</a></li>
+<?php
+if ($myu->admin == true) {
+?>
+<li><a href="/Admin" style="font-size:16px;">Admin</a></li>
+<?php } ?>
 </ul>
 <ul class="right hide-on-med-and-down">
 
@@ -39,7 +44,7 @@ if (!$user) {
 </li>
 <li>
 
-
+<li><a href="/user/logout.php">Log out</a></li>
 <li><a href="/Customize" style="font-size:16px;"><?php echo "$user";?></a></li>
 </li>
 <?php } ?>
@@ -58,6 +63,12 @@ if (!$user) {
 <li><a href="/Forum">Forum</a></li>
 <li><a href="/Upgrades">Upgrade</a></li>
 <li><a href="/Blog">Blog</a></li>
+<?php
+if ($myu->admin == true) {
+?>
+<li><a href="/Admin">Admin</a></li>
+<?php } ?>
+
 </div>
 </nav>
 			</ul>
