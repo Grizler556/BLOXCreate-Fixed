@@ -1,4 +1,5 @@
 <? include "../header.php"; 
+$time = time();
 if ($myu->admin == "true"){ ?>
 <div class="col s12 m9 l8">
 <div class="container" style="width:100%;">
@@ -113,8 +114,8 @@ if ($myu->admin == "true"){ ?>
 <a class="link-side" onclick="group()" id="group" style="background-color: rgb(255, 255, 255);">Ban User</a>
 <a class="link-side" onclick="advertisement()" id="advertisement" style="background-color: rgb(255, 255, 255);">Advertisement</a>
 <a class="link-side" onclick="tshirt()" id="tshirt" style="background-color: rgb(255, 255, 255);">Announcement</a>
-<a class="link-side" onclick="shirt()" id="shirt" style="background-color: rgb(255, 255, 255);">Shirt</a>
-<a class="link-side" onclick="pants()" id="pants" style="background-color: rgb(255, 255, 255);">Pants</a>
+<a class="link-side" onclick="shirt()" id="shirt" style="background-color: rgb(255, 255, 255);">Function that doesnt work</a>
+<a class="link-side" onclick="pants()" id="pants" style="background-color: rgb(255, 255, 255);">Create Item</a>
 </div>
 <div class="col s12 m10 l10">
 <div id="create-game" style="display: block;">
@@ -186,27 +187,66 @@ header("Location: /Admin");
 <div class="col s6">
 <div class="header-text">Create Pants</div>
 <div style="height:15px;"></div>
-<form action="" method="post" enctype="multipart/form-data">
-<input type="hidden" name="csrf_token" value="WoE7KcrBGH8AByRxI22MZSc/IzB0FJ6AVVtFgZOJLbI=">
-<input type="text" name="uploadPantsName" id="uploadPantsName" style="margin:0;border:0;box-sizing:border-box;padding:0;height:35px;border:2px solid #ddd !important;font-size:15px;padding:0 12px;" placeholder="Title">
-<div style="height:15px;"></div>
-<textarea name="uploadPantsDescription" id="uploadPantsDescription" style="margin:0;border:0;box-sizing:border-box;padding:0;height:125px;border:2px solid #ddd !important;font-size:15px;padding:6px 12px;outline:none;" placeholder="Description"></textarea>
-<div style="height:15px;"></div>
-<input type="text" name="uploadPantsPrice" id="uploadPantsPrice" style="margin:0;border:0;box-sizing:border-box;padding:0;height:35px;border:2px solid #ddd !important;font-size:15px;padding:0 12px;" placeholder="Price (Coins)">
-<div style="height:15px;"></div>
-<input type="text" name="uploadPantsPriceCash" id="uploadPantsPriceCash" style="margin:0;border:0;box-sizing:border-box;padding:0;height:35px;border:2px solid #ddd !important;font-size:15px;padding:0 12px;" placeholder="Price (Cash)">
-<div style="height:15px;"></div>
-<input type="file" name="file" id="file" style="font-size:14px;">
-<div style="height:15px;"></div>
-<style>.edit-hover:hover{background:#1F89DE!important;}</style>
-<input type="submit" name="uploadPantsSubmit" id="uploadPantsSubmit" value="Upload" style="display:inline-block;background:#2196F3;color:white;padding:5px 15px;font-size:14px;font-weight:500;border:0;border-radius:2px;border-bottom:1px solid #207FC9;outline:none;" class="edit-hover">
+<form action="" method="post">
+<input type="text" name="name" id="name" class="general-textbar" placeholder="name">
+<br>
+<br>
+<input type="text" name="desc" id="desc" class="general-textbar" placeholder="desc">
+<br>
+<br>
+<input type="text" name="type" id="type" class="general-textbar" placeholder="type">
+<br>
+<br>
+<input type="text" name="image" id="image" class="general-textbar" placeholder="preview png link">
+<br>
+<br>
+<input type="text" name="wearable" id="wearable" class="general-textbar" placeholder="wear png link">
+<br>
+<br>
+<input type="text" name="price" id="price" class="general-textbar" placeholder="price">
+<br>
+<br>
+<input type="text" name="onsale" id="onsale" class="general-textbar" placeholder="1">
+<br>
+<br>
+<input type="text" name="collectable" id="collectable" class="general-textbar" placeholder="false">
+<br>
+<br>
+<input type="text" name="amount" id="desc" class="general-textbar" placeholder="-1"> </input>
+<br>
+<br>
+<button type="submit" name="save" class="waves-effect waves-light btn light-blue darken-2" style="display:block;">Post</button>
+
 </form>
+
+</div>
+</div>
+
+<div style="height:15px;"></div>
+
+<?php
+if(isset($_POST['save'])){
+$hi = $handler->prepare("INSERT INTO items (name, description, type, image, creator, created, wearable, price, onsale, collectable, amount) VALUES (:name, :desc, :type, :image, '$user', $time, :wearable, :price, :onsale, :collectable, :amount)");
+$hi->bindParam(':name', $_POST["name"], PDO::PARAM_STR);
+$hi->bindParam(':desc', $_POST["desc"], PDO::PARAM_STR);
+$hi->bindParam(':type', $_POST["type"], PDO::PARAM_STR);
+$hi->bindParam(':image', $_POST["image"], PDO::PARAM_STR);
+$hi->bindParam(':wearable', $_POST["wearable"], PDO::PARAM_STR);
+$hi->bindParam(':price', $_POST["price"], PDO::PARAM_STR);
+$hi->bindParam(':onsale', $_POST["onsale"], PDO::PARAM_STR);
+$hi->bindParam(':collectable', $_POST["collectable"], PDO::PARAM_STR);
+$hi->bindParam(':amount', $_POST["amount"], PDO::PARAM_STR);
+$hi->execute();
+
+header("Location: games.php");
+
+} include($_SERVER['DOCUMENT_ROOT']."/footer.php");
+
+
+?>
 </div>
 <div class="col s6">
 <div style="font-size:14px;">
-<div class="header-text">Template</div>
-<div style="height:15px;"></div>
-<a href="http://i.imgur.com/leDw4RB.png" target="_blank" title="Template (Click to Enlarge)" alt="Template (Click to Enlarge)"><img src="http://i.imgur.com/leDw4RB.png" class="responsive-img"></a>
 </div>
 </div>
 </div>

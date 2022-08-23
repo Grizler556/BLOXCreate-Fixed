@@ -1,5 +1,7 @@
 <?php
 
+$id=$_GET['id'];
+
 include($_SERVER['DOCUMENT_ROOT']."/header.php");
 
 if($user){
@@ -51,9 +53,8 @@ if(isset($_POST['save'])){
 
 $body=$_POST["post"];
 
-
-
-$hi = $handler->prepare("INSERT INTO threads (threadAdmin, threadTitle, threadBody) VALUES ('$user', :title, :post)");
+$hi = $handler->prepare("INSERT INTO threads (topicId, threadAdmin, threadTitle, threadBody) VALUES (:id, '$user', :title, :post)");
+$hi->bindParam(':id', $id, PDO::PARAM_INT);
 $hi->bindParam(':title', $_POST["title"], PDO::PARAM_STR);
 $hi->bindParam(':post', $_POST["post"], PDO::PARAM_STR);
 $hi->execute();
