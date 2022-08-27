@@ -129,7 +129,8 @@ if ($myu->admin == "true"){ ?>
 <div class="header-text">Ban User</div>
 <div style="height:15px;"></div>
 <form action="" method="post">
-<input style="width:750px" type="text" name="post" id="post" class="general-textbar" placeholder="Username" value="VoCrOP9owOTkoCXLNxpR5AkeGaiTYAhk1xH1Bjyivso=">
+<input style="width:750px" type="text" name="post" id="post" class="general-textbar" placeholder="Username">
+<input type="hidden" name="csrf-token" value="CIwNZNlR4XbisJF39I8yWnWX9wX4WFoz"/>
 <button type="submit" name="save" class="waves-effect waves-light btn grey darken-2" style="display:block;">Ban User</button>
 </form>
 </div>
