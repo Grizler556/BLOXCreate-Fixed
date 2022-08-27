@@ -19,9 +19,9 @@ if($user){
 
 <div class="content-box"></br>
 
-<form action="" method="post">
+<form action="" method="post" >
 
-<input type="text" name="post" id="post" class="general-textbar" placeholder="Enter reply here">
+<input type="text" name="post" id="post" class="general-textbar" placeholder="Enter reply here" name="csrf_token" value="VoCrOP9owOTkoCXLNxpR5AkeGaiTYAhk1xH1Bjyivso=">
 
 
 
