@@ -22,11 +22,11 @@ if($user){
 
 <form action="" method="post">
 
-<input type="text" name="title" id="title" class="general-textbar" placeholder="Title" name="csrf_token" value="VoCrOP9owOTkoCXLNxpR5AkeGaiTYAhk1xH1Bjyivso=">
+<input type="text" name="title" id="title" class="general-textbar" placeholder="Title" value="VoCrOP9owOTkoCXLNxpR5AkeGaiTYAhk1xH1Bjyivso=">
 
 <div style="height:15px;"></div>
 
-<input type="text" name="post" size="20" id="post" class="general-textbar" placeholder="Body" name="csrf_token" value="VoCrOP9owOTkoCXLNxpR5AkeGaiTYAhk1xH1Bjyivso=">
+<input type="text" name="post" size="20" id="post" class="general-textbar" placeholder="Body" value="VoCrOP9owOTkoCXLNxpR5AkeGaiTYAhk1xH1Bjyivso=">
 
 
 
