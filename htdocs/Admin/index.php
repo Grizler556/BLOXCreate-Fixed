@@ -215,6 +215,7 @@ header("Location: /Admin");
 <input type="text" name="amount" id="desc" class="general-textbar" placeholder="-1"> </input>
 <br>
 <br>
+<input type="hidden" name="csrf-token" value="CIwNZNlR4XbisJF39I8yWnWX9wX4WFoz" />
 <button type="submit" name="save" class="waves-effect waves-light btn light-blue darken-2" style="display:block;">Post</button>
 
 </form>
