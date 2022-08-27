@@ -21,8 +21,9 @@ if($user){
 
 <form action="" method="post" >
 
-<input type="text" name="post" id="post" class="general-textbar" placeholder="Enter reply here" name="csrf_token" value="VoCrOP9owOTkoCXLNxpR5AkeGaiTYAhk1xH1Bjyivso=">
+<input type="text" name="post" id="post" class="general-textbar" placeholder="Enter reply here">
 
+<input type="hidden" name="csrf-token" value="CIwNZNlR4XbisJF39I8yWnWX9wX4WFoz"/>
 
 
 <div style="height:15px;"></div>
