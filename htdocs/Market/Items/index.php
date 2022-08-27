@@ -1,5 +1,8 @@
 <? include"../../header.php"; 
-$item = $handler->query("SELECT * FROM items WHERE id=" . $_GET['id']);
+$id = $_GET['id']
+$item = $handler->query("SELECT * FROM items WHERE id=:id");
+$item->bindParam(':id', $id, PDO::PARAM_INT);
+$item->execute();
 $gB = $item->fetch(PDO::FETCH_OBJ); ?>
 
 <?php
