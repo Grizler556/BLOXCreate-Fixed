@@ -1,4 +1,21 @@
 <?php
+function reCaptcha($recaptcha){
+  $secret = "YOUR SECRET RECAPTCHA KEY";
+  $ip = $_SERVER['REMOTE_ADDR'];
+
+  $postvars = array("secret"=>$secret, "response"=>$recaptcha, "remoteip"=>$ip);
+  $url = "https://www.google.com/recaptcha/api/siteverify";
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
+  $data = curl_exec($ch);
+  curl_close($ch);
+
+  return json_decode($data, true);
+}
+
 if (!$user) {
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -39,10 +56,9 @@ echo "<div class='reg-alert'><p class='basic-font reg-alert-txt'>Your password i
 elseif (!is_alphanumeric($username)) {
 echo "<div class='reg-alert'><p class='basic-font reg-alert-txt'>You username contains some invalid characters</p></div>";
 } else {
-//$encrypt = password_hash($password, PASSWORD_BCRYPT, array(
-//	'cost' => 12
-//));
-//justhost doesn't support bcrypt :(
+$recaptcha = $_POST['g-recaptcha-response'];
+$res = reCaptcha($recaptcha);
+if($res['success']){
 $encrypt1 = hash('sha512',$password);
 $encrypt = hash('sha512',$encrypt1);
 $date = time();
@@ -56,6 +72,7 @@ $data2->execute(array(':username' => $username, ':password' => $encrypt, ':email
 $giveEmeralds = $handler->query("UPDATE users SET emeralds=5 WHERE username='$username'");
 header("Location: ../../Login");
 exit();
+}
 }
 }
 }
